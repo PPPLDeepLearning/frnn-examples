@@ -1,0 +1,128 @@
+callbacks:
+  list:
+  - earlystop
+  metrics:
+  - val_loss
+  - val_roc
+  - train_loss
+  mode: min
+  monitor: val_loss
+  patience: 50
+  write_grads: false
+data:
+  T_max: 1000.0
+  T_min_warn: 30
+  T_warning: 30
+  augment_during_training: false
+  augmentation_mode: none
+  bleed_in: 0
+  bleed_in_remove_from_test: true
+  current_end_thresh: 10000
+  current_index: 0
+  current_thresh: 750000
+  cut_shot_ends: false
+  dt: 0.001
+  equalize_classes: false
+  floatx: float32
+  normalizer: var
+  plotting: false
+  positive_example_penalty: 16.0
+  recompute: false
+  recompute_normalization: false
+  signal_to_augment: None
+  use_shots: 200000
+  window_decay: 2
+  window_size: 10
+env:
+  name: torch-env
+  type: anaconda3
+model:
+  PCS: true
+  backend: tensorflow
+  cell_order: 4
+  cell_rank: 11
+  cell_steps: 5
+  clipnorm: 10.0
+  dense_layers_1d: 1
+  dense_regularization: 0.01
+  dense_size: 200
+  dense_size_1d: 32
+  dropout_prob: 0.03
+  ignore_timesteps: 100
+  kernel_size_spatial: 1
+  kernel_size_temporal: 13
+  length: 200
+  loss_scale_factor: 1
+  lr: 0.000214020274414051
+  lr_decay: 0.97
+  lr_decay_factor: 1.2
+  lr_decay_patience: 6
+  model_type: LSTM
+  num_conv_filters: 32
+  num_conv_layers: 3
+  optimizer: adam
+  pool_size: 2
+  pred_batch_size: 8
+  pred_length: 100
+  profile_cut_size: 80
+  regularization: 0.0
+  return_sequences: true
+  rnn_layers: 1
+  rnn_size: 48
+  rnn_type: LSTM
+  shallow: false
+  shallow_model:
+    C: 1.0
+    kernel: rbf
+    learning_rate: 0.1
+    max_depth: 3
+    n_estimators: 100
+    num_samples: 1000000
+    scale_pos_weight: 10.0
+    skip_train: false
+    type: xgboost
+  simple_conv: true
+  size_conv_filters: 3
+  skip: 1
+  stateful: true
+  tcn_hidden: 40
+  tcn_layers: 10
+  torch: true
+  tt_lstm_hidden: 17
+  warmup_steps: 0
+num_gpus: 4
+paths:
+  data: d3d_data_ped_spec
+  executable: torch_learn.py
+  shallow_executable: learn.py
+  base_path: /tigress
+  shot_list_dir: FRNN/shot_lists/
+  signal_prepath:
+  - FRNN/signal_data_ipsip/
+  - FRNN/signal_data_new_nov2019/
+  - FRNN/signal_data_new_2020/
+  - FRNN/signal_data_new_2021/
+  - FRNN/signal_data_new_REAL_TIME/
+  - FRNN/signal_data/
+  - FRNN/signal_data_efit/
+target: flat
+training:
+  as_array_of_shots: true
+  batch_generator_warmup_steps: 0
+  batch_size: 8
+  data_parallel: false
+  hyperparam_tuning: true
+  max_patch_length: 100000
+  num_batches_minimum: 200
+  num_epochs: 1000
+  num_shots_at_once: 200
+  predict_mode: ttelm_target
+  predict_time: 1
+  ranking_difficulty_fac: 1.0
+  restart: false
+  shuffle_training: true
+  target_description:
+  - filterscope fs07
+  train_frac: 0.75
+  use_mock_data: false
+  validation_frac: 0.33
